@@ -1,0 +1,15 @@
+{
+    "id": "ac9d3381-7b71-4015-8f94-6fe11a6f0bb0",
+    "version": "1.0.0",
+    "requiredApiVersion": "^1.4.0",
+    "iconFile": "icon.jpg",
+    "author": {
+        "name": "Thomas Gardner",
+        "homepage": "https://github.com/tgardner851",
+        "support": "https://github.com/tgardner851/Rocket.Chat.App-UptimeRobot"
+    },
+    "name": "Uptime Robot",
+    "nameSlug": "uptimerobot",
+    "classFile": "UptimeRobotApp.ts",
+    "description": "Register Webhooks for Uptime Robot notifications."
+}

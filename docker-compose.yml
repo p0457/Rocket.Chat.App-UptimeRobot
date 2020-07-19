@@ -1,0 +1,8 @@
+# docker-compose up `service-name` to build
+
+version: '1'
+
+services:
+  rocketchatapp_uptimerobot:
+    image: rocketchatapp_uptimerobot:latest
+    container_name: rocketchatapp_uptimerobot
