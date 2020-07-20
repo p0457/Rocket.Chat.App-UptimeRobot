@@ -79,19 +79,19 @@ export class NotifyWebhookEndpooint extends ApiEndpoint {
 
               let result = '';
               if (days > 0) {
-                result += ' ' + days + ' days';
+                result += ` ${days} +  days`;
               }
               if (hours > 0) {
-                result += ' ' + hours + ' hours';
+                result += ` ${hours} +  hours`;
               }
               if (minutes > 0) {
-                result += ' ' + minutes + ' minutes';
+                result += ` ${minutes} +  minutes`;
               }
               if (seconds > 0) {
-                result += ' ' + seconds + ' seconds';
+                result += ` ${seconds} +  seconds`;
               }
 
-              return result;
+              return result.trim();
             };
 
             const data = getData(payload);
@@ -99,9 +99,9 @@ export class NotifyWebhookEndpooint extends ApiEndpoint {
             let title = `${data.monitorFriendlyName} is ${data.statusText}!`;
             let text = ``;
             if(data.isUp) {
-              text += `It was down for ${data.alertDuration}.`;
+              text += `${data.monitorFriendlyName} was down for ${data.alertDuration}.`;
             } else {
-              text += `Reason: ${data.alertDetails}.`;
+              text += `${data.monitorFriendlyName} is down.\nReason: ${data.alertDetails}.`;
             }
             const color = data.statusColor;
             let url = 'https://uptimerobot.com';
