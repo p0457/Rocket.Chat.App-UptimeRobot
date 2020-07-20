@@ -7,7 +7,7 @@ export class NotifyWebhookEndpooint extends ApiEndpoint {
 
     @example({
       query: {
-          rooms: '@user,#room',
+          rooms: '@user,room',
       },
     })
     public async post(
@@ -41,8 +41,8 @@ export class NotifyWebhookEndpooint extends ApiEndpoint {
           let room;
           if (roomToSend.startsWith('@')) {
             room = await read.getRoomReader().getDirectByUsernames([senderName, roomToSend.substring(1, roomToSend.length)]);
-          } else if (roomToSend.startsWith('#')) {
-            room = await read.getRoomReader().getByName(roomToSend.substring(1, roomToSend.length));
+          } else {
+            room = await read.getRoomReader().getByName(roomToSend);
           }
 
           if (room) {
@@ -104,7 +104,9 @@ export class NotifyWebhookEndpooint extends ApiEndpoint {
               text += `Reason: ${data.alertDetails}.`;
             }
             const color = data.statusColor;
-            const url = data.monitorURL;
+            let url = 'https://uptimerobot.com';
+            if (data.monitorURL) url = data.monitorURL;
+            if (!url.startsWith('http://')) url = `https://${url}`;
 
             const attachment: IMessageAttachment = {
               collapsed: true,
